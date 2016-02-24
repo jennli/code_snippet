@@ -1,0 +1,18 @@
+<div class="container">
+  <h1>All Snippets</h1>
+
+  <table class="table table-striped">
+    <% @snippets.each do |snippet| %>
+    <% if snippet.is_private != "true" || (can? :manage, snippet)%>
+    <tr style="border: 1px solid grey;">
+    <td>
+      <%= link_to snippet.title, snippet_path(snippet) %> <span class="label label-warning"><%= snippet.language.kind %></span>
+      <% if snippet.is_private =="true" %>
+      <span class="label label-danger">private</span>
+      <% end %>
+    </td>
+  </tr>
+  <% end %>
+  <% end %>
+</table>
+</div>

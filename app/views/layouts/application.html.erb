@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>CodeSnippets</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= stylesheet_link_tag    'boostrap', media: 'all', 'data-turbolinks-track' => true %>
+  <%#= stylesheet_link_tag    'coderay', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+  <nav class="navbar navbar-default">
+    <div id="navbar">
+      <ul class="nav navbar-nav navbar-left">
+        <li><%= link_to "Home", snippets_path %> </li>
+
+        <% if user_signed_in? %>
+        <li><%= link_to "New Snippet", new_snippet_path %> </li>
+        <li><%= link_to "Log Out", sessions_path, method: :delete %></li>
+
+        <% else %>
+        <li><%= link_to "Log In", new_session_path %></li>
+        <li><%= link_to "Sign Up", new_user_path %></li>
+        <% end %>
+      </ul>
+
+    </div>
+  </nav>
+  <div class="top-notice">
+    <% if notice %>
+    <div class="alert fade in alert-success">
+      <button type="button" class="close" data-dismiss="alert">&times;</button>
+      <h4><%= notice %></h4>
+    </div>
+
+    <% elsif alert %>
+    <div class="alert fade in alert-danger">
+      <button type="button" class="close" data-dismiss="alert">&times;</button>
+      <h4><%= alert %></h4>
+    </div>
+    <% end %>
+  </div>
+
+  <div class="container">
+
+    <div class="btn-group" role="group" >
+      <button type="button" class="btn btn-default"><%= link_to Language::Ruby[:name], filter_path(Language::Ruby[:lang_id]) %> </button>
+      <button type="button" class="btn btn-default"><%= link_to Language::HTML[:name], filter_path(Language::HTML[:lang_id]) %></button>
+      <button type="button" class="btn btn-default"><%= link_to Language::CSS[:name], filter_path(Language::CSS[:lang_id]) %></button>
+      <button type="button" class="btn btn-default"><%= link_to Language::Javascript[:name], filter_path(Language::Javascript[:lang_id]) %></button>
+    </div>
+
+    <%= yield %>
+  </div>
+
+</body>
+</html>

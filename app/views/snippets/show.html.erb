@@ -1,0 +1,19 @@
+<div class="container">
+
+  <h2><%= @snippet.title %></h2>
+  <p class="label label-warning"><%= @language %></p>
+
+  <% if @snippet.is_private == "true" %>
+  <p class="label label-danger">private</p>
+  <% end %>
+
+  <p><%= markdown(@snippet.body) %></p>
+  <p>Created by: <%= @snippet.user.full_name %></p>
+
+  <% if can? :manage, @snippet %>
+  <div>
+    <%= link_to "Edit", edit_snippet_path(@snippet), class:"btn btn-info" %>
+    <%= link_to "Delete", snippet_path(@snippet), method: :delete, class:"btn btn-info" %>
+  </div>
+  <% end %>
+</div>

@@ -1,0 +1,23 @@
+<div>
+  <%= form_for @snippet do |f| %>
+  <div class="form-group">
+    <%= f.collection_select :language_id, Language.all, :id, :kind, prompt:true %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :title %>
+    <%= f.text_field :title, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :body %>
+    <%= f.text_area :body,class: "form-control" %>
+  </div>
+
+  <div>
+    <%= f.label :private? %>
+    <%= f.check_box :is_private, {}, "true", "false" %>
+  </div>
+  <%= f.submit %>
+  <% end %>
+</div>
