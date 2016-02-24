@@ -4,9 +4,9 @@ class SnippetsController < ApplicationController
   def index
     # byebug
     if params[:lang_id]
-      @snippets = Snippet.where("language_id = ?", params[:lang_id]).order("updated_at DESC")
+      @snippets = Snippet.where("language_id = ?", params[:lang_id]).paginate(:page=>params[:page]).order("updated_at DESC")
     else
-      @snippets = Snippet.all.order("updated_at DESC")
+      @snippets = Snippet.all.paginate(:page=>params[:page]).order("updated_at DESC")
     end
   end
 

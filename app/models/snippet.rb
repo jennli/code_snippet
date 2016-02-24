@@ -7,4 +7,6 @@ class Snippet < ActiveRecord::Base
 
   validates :user, presence:true
   validates :language, presence:true
+
+  self.per_page = 7
 end
