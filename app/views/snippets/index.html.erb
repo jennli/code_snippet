@@ -10,6 +10,8 @@
         <% if snippet.is_private =="true" %>
         <span class="label label-danger">private</span>
         <% end %>
+        <br />
+        <%= snippet.user.full_name %>
       </td>
     </tr>
     <% end %>
